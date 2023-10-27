@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="icon" href="<%= BASE_URL %>favicon.ico">
+	<title><%= htmlWebpackPlugin.options.title %></title>
+	<script src="https://kit.fontawesome.com/3ee70c58bc.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		.loading_container {
+			z-index: 9999999;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			background: #dde8fa;
+		}
+
+		.loader {
+			position: absolute;
+			transform: scale(0.5);
+			top: calc(50% - 130px);
+			left: calc(50% - 110px);
+		}
+		.loader img {
+			width: 150px;
+			image-rendering: pixelated;
+		}
+	</style>
+</head>
+<body>
+	<div class="loading_container">
+		<div class="loader">
+			<img src="./loading.gif" />
+		</div>
+		<noscript class="d-flex justify-content-center text-center p-2">
+			<div class="text-danger">
+				Сайт не может работать без JavaScript.
+				Включите в настройках браузера JavaScript!
+			</div>
+		</noscript>
+	</div>
+	<noscript>
+		<strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+	</noscript>
+	<div id="app"></div>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script>
+        window.addEventListener('load', function () {
+            //document.querySelector(".loading_container").style.display = 'none';
+            $(".loading_container").fadeOut();
+        })
+    </script>
+	<!-- built files will be auto injected -->
+</body>
+</html>
