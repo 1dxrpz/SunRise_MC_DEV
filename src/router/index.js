@@ -5,6 +5,7 @@ import HomeView from '../views/Home/HomeView.vue';
 import AccountView from '../views/Home/AccountView.vue';
 import ShopView from '../views/Home/ShopView.vue';
 import AboutView from '../views/Home/AboutView.vue';
+import VerifyView from '../views/Home/VerifyView.vue';
 
 // Auth views
 import LoginView from '../views/Auth/LoginView.vue';
@@ -13,9 +14,17 @@ import RegisterView from '../views/Auth/RegisterView.vue';
 // Layouts
 import HomeLayout from '../layouts/HomeLayout.vue';
 import AuthLayout from '../layouts/AuthLayout.vue';
-import AccountLayout from '../layouts/AccountLayout.vue';
+//import AccountLayout from '../layouts/AccountLayout.vue';
 
 const routes = [
+{
+	path: '/verify',
+	name: 'verify',
+	component: VerifyView,
+	meta: {
+		layout: HomeLayout
+	}
+},
 {
 	path: '/',
 	name: 'home',
@@ -29,7 +38,7 @@ const routes = [
 	name: 'account',
 	component: AccountView,
 	meta: {
-		layout: AccountLayout
+		layout: HomeLayout
 	}
 },
 {

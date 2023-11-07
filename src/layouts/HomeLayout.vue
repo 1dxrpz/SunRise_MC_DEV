@@ -1,7 +1,7 @@
 <template>
-	<div class="container">
-		<nav>
-			<div class="nav-left">
+	<nav>
+		<div class="container">
+			<div class="nav">
 				<router-link to="/">
 					<img id="logo" alt="logo" src="@/assets/images/logo.png">
 				</router-link>
@@ -14,34 +14,44 @@
 				<router-link to="/about">
 					<div class="nav-link">About</div>
 				</router-link>
-			</div>
-			<div class="nav-right">
-				<router-link to="/launcher">
+				<router-link to="/map">
+					<div class="nav-link">Map</div>
+				</router-link>
+				<router-link class="spacer" to="/launcher">
 					<div class="nav-link">Launcher</div>
 				</router-link>
 				<router-link v-if="isLogged" to="/account">
 					<div class="nav-link">Account</div>
 				</router-link>
-				<div v-else>
-					<router-link  to="/register">
-						<div class="nav-link">Register</div>
-					</router-link>
-					<router-link  to="/login">
-						<div class="nav-link">Login</div>
-					</router-link>
-				</div>
+				<router-link v-else to="/register">
+					<div class="nav-link">Register</div>
+				</router-link>
 			</div>
-			
-		</nav>
-	</div>
-	<router-view v-if="isMounted" :user="user" :isLogged="isLogged"/>
+		</div>
+	</nav>
+	<scrollbar @scroll="onScroll">
+		<router-view v-if="isMounted" :user="user" :isLogged="isLogged"/>
+		<footer>
+			<div class="container">
+				<ul>
+					<li>Link</li>
+					<li>Link</li>
+					<li>Link</li>
+					<li>Link</li>
+				</ul>
+
+			</div>
+		</footer>
+	</scrollbar>
+
 </template>
 
 <script>
+	import Scrollbar from "vue3-smooth-scrollbar";
 	import axios from 'axios';
 	export default {
 		name: 'HomeView',
-		components: {},
+		components: {Scrollbar},
 		data() {
 			return {
 				user: null,
@@ -49,8 +59,18 @@
 				isMounted: false
 			}
 		},
+		methods: {
+			onScroll() {
+				try {
+					var scroll = document.querySelector('.scroll-content').getBoundingClientRect().top;
+					document.querySelector(".main_bg").style.backgroundPositionY = `${-scroll / 2}px`;
+					document.querySelector(".topic_content").style.top = `${-scroll / 1.5}px`;
+				} catch(e) {
+					// catch 
+				}
+			}
+		},
 		async mounted () {
-
 			this.isLogged = localStorage.getItem("token") != null;
 			const response = await axios.get("user");
 			this.user = response.data;
@@ -81,7 +101,6 @@
 	font-weight: 800;
 	src: url(@/assets/fonts/Lato-Bold.ttf);
 }
-
 
 @import '@/assets/styles/index.scss';
 

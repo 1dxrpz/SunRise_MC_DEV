@@ -61,6 +61,7 @@
 				} else {
 					if (result.data.message == undefined) {
 						localStorage.setItem('token', result.data.token);
+						location.reload();
 						this.$router.push("/account");
 					} else {
 						this.form_errors = "error";

@@ -1,0 +1,67 @@
+.discord_info {
+	// position: relative;
+	// z-index: 99;
+	// background: #22272e;
+}
+.topic_content {
+	position: relative;
+	z-index: 90;
+	position: relative;
+	width: 100%;
+	margin-top: 150px;
+	display: flex;
+	.logo {
+		height: 200px;
+	}
+	.topic_text {
+		//padding: 100px;
+		padding-right: 0;
+		box-sizing: border-box;
+		color: #eee;
+		h1 {
+			font-size: 48pt;
+		}
+		p {
+			font-size: 24pt;
+		}
+	}
+
+}
+.secondary_bg, .main_bg {
+	overflow: hidden;
+	width: 100%;
+	background-size: cover;
+	position: relative;
+	&:after, &:before {
+		content: "";
+		position: absolute;
+		width: 150%;
+		height: 150px;
+		z-index: 95;
+		left: -25%;
+	}
+	.dot_pattern {
+		opacity: .15;
+		background-size: 4px auto;
+	}
+}
+.secondary_bg {
+	min-height: 90vh;
+	background: url('@/assets/images/bg.png');
+	top: 100px;
+	&:before {
+		background: #22272e;
+		top: -70px;
+		transform: rotate(4deg);
+	}
+}
+.main_bg {
+	background: url('@/assets/images/secondary_bg.png');
+	top: -100px;
+	min-height: 100vh;
+	&:after {
+		background: #22272e;
+		bottom: -70px;
+		transform: rotate(-4deg);
+	}
+}

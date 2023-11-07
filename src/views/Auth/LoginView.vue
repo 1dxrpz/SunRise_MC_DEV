@@ -1,8 +1,8 @@
 <template>
-	<form @submit.prevent="login">
+	<form @submit.prevent="loginEventHandler">
 		<div class="form_control">
 			<div class="label">Логин (Email)</div>
-			<input class="text" v-model="email" type="email" required="true">
+			<input class="text" v-model="login" type="text" required="true">
 		</div>
 		<div class="form_control">
 			<div class="label">Пароль</div>
@@ -26,15 +26,15 @@
 		data: () => {
 			return {
 				form_errors: [],
-				email: "",
+				login: "",
 				password: ""
 			}
 		},
 		methods: {
-			async login(e) {
+			async loginEventHandler(e) {
 				e.preventDefault();
 				var result = await axios.post("login", {
-					email: this.email,
+					login: this.login,
 					password: this.password
 				});
 				if (Array.isArray(result.data)) {
@@ -42,6 +42,7 @@
 				} else {
 					if (result.data.message == undefined) {
 						localStorage.setItem('token', result.data.token);
+						location.reload();
 						this.$router.push("/account");
 					} else {
 						this.form_errors = "error";

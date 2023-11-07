@@ -1,56 +1,112 @@
 body {
+	overflow: hidden;
 	margin: 0;
-	//display: flex;
-	//justify-content: center;
-	
+	scroll-behavior: smooth;
+
 	.content {
 		width: 100vw;
+		padding-top: 100px;
+		min-height: calc(100vh - 391px);
 	}
 	.container {
-		width: 70vw;
 		position: relative;
-		left: 15vw;
+		min-width: 200px;
+		max-width: 1200px;
+		width: 100%;
+		margin: 0 auto;
+		padding: 10px 30px;
+		box-sizing: border-box;
+		height: max-content;
 	}
+}
+.button {
+	border: none;
+	padding: 10px 100px;
+	border-radius: 8px;
+	background: #e29020;
+	color: #eee;
+	outline: none;
+	transition: .1s;
+	&:hover {
+		background: #c46002;
+	}
+	&.blue {
+		background: #5865f2;
+		&:hover {
+			background: #4f5be0;
+		}
+	}
+	&.huge {
+		font-size: 14pt;
+	}
+	
+}
+#app {
+	height: 100vh;
+	overflow: auto;
+}
+.scrollbar-track {
+	background: transparent !important;
 }
 
 #logo {
 	height: 50px;
 }
 
+footer {
+	border-top: 1px solid rgba(255, 255, 255, .1);
+	margin-top: 50px;
+	padding: 20px 0;
+	background: #1e1f22;
+	clear: both;
+	position: relative;
+	height: 200px;
+}
+
 nav {
-	position: absolute;
+	position: fixed;
 	z-index: 99;
 	display: flex;
-	align-items: center;
-	padding: 20px;
-	transition: .1s;
-	width: 70vw;
-
-	.nav-left, .nav-right {
+	//padding: 20px;
+	width: 100vw;
+	//
+	backdrop-filter: blur(10px) hue-rotate(10deg) saturate(80%);
+	border-bottom: 1px solid rgba(255, 255, 255, .1);
+	
+	.nav {
+		a {
+			padding: 0px 20px;
+			&.spacer {
+				margin-left: auto;
+			}
+		}
 		display: flex;
 		align-items: center;
-		width: 100%;
-	}
-	.nav-right {
-		justify-content: end;
-	}
-
-	#logo {
-		margin-right: 30px;
-	}
-	.nav-link {
-		padding: 0 20px;
-		color: #000;
-	}
-	a {
-		color: #eee;
-		&.router-link-exact-active {
-			color: #FFAA00;
-			font-weight: bold;
-		}
 	}
 }
 
 a {
 	text-decoration: none;
+}
+a {
+	color: #eee;
+	&.router-link-exact-active {
+		color: #FFAA00;
+		font-weight: bold;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	body {
+		.container {
+			max-width: 900px;
+		}
+	}
+}
+@media screen and (max-width: 1000px) {
+	body {
+		.container {
+			max-width: 600px;
+		}
+	}
 }

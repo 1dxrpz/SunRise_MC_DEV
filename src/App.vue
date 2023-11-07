@@ -1,12 +1,13 @@
 <template>
-	<component :is="$route.meta.layout">
-		<router-view />
-	</component>
+		<component :is="$route.meta.layout">
+			<router-view />
+		</component>
 </template>
 <script>
+	
 	export default {
 		name: 'App',
-		components: {}
+		components: { }
 	}
 </script>
 <style lang="scss">

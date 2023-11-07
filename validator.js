@@ -4,12 +4,12 @@ const validator = (schema) => ( payload ) =>
 schema.validate(payload, {abortEarly: false});
 
 const loginSchema = Joi.object({
-	email: Joi.string().email().required()
+	login: Joi.string().required()
 	.messages({
-		'string.base': `Укажите валидную почту`,
-		'string.empty': `Поле "Почта" не может быть пустым`,
+		'string.base': `Укажите валидный логин`,
+		'string.empty': `Поле "Логин" не может быть пустым`,
 		'string.min': ``,
-		'any.required': `"email" обязательное поле`
+		'any.required': `"логин" обязательное поле`
 	}),
 	password: Joi.string().min(5).max(30).required()
 	.messages({
@@ -19,6 +19,26 @@ const loginSchema = Joi.object({
 		'string.max': `Пароль не должен содержать в себе больше 30 символов`,
 		'any.required': `"Пароль" обязательное поле`
 	}),
+});
+
+const changePasswordSchema = Joi.object({
+	newPassword: Joi.string().min(5).max(30).required()
+	.messages({
+		'string.base': `Укажите валидный пароль`,
+		'string.empty': `Поле "пароль" не может быть пустым`,
+		'string.min': `Пароль должен содержать в себе минимум 5 символов`,
+		'string.max': `Пароль не должен содержать в себе больше 30 символов`,
+		'any.required': `"Пароль" обязательное поле`
+	}),
+	password: Joi.string().min(5).max(30).required()
+	.messages({
+		'string.base': `Укажите валидный пароль`,
+		'string.empty': `Поле "пароль" не может быть пустым`,
+		'string.min': `Пароль должен содержать в себе минимум 5 символов`,
+		'string.max': `Пароль не должен содержать в себе больше 30 символов`,
+		'any.required': `"Пароль" обязательное поле`
+	}),
+	user: Joi.object()
 });
 
 const registerSchema = Joi.object({
@@ -58,3 +78,4 @@ const registerSchema = Joi.object({
 
 exports.validateRegister = validator(registerSchema);
 exports.validateLogin = validator(loginSchema);
+exports.validateChangePassword = validator(changePasswordSchema);
